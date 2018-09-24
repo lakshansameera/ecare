@@ -1,6 +1,7 @@
 package com.example.shanindu.hearts.activity.fragments;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.shanindu.hearts.R;
+import com.example.shanindu.hearts.activity.DetailActivity;
 import com.example.shanindu.hearts.adapter.mealsAdapter;
 import com.example.shanindu.hearts.model.meals;
 import com.example.shanindu.hearts.support.sharedPref;
@@ -45,6 +47,7 @@ public class MealFragment extends Fragment {
     private final int elder = 1; //elder identifies from 1
     private final int careGiver = 0; //caregiver identifies from 2
 
+    private ListView caregiverList;
 
     public MealFragment() {
         // Required empty public constructor
@@ -147,6 +150,14 @@ public class MealFragment extends Fragment {
     {
         if(pref.getUserType()==elder)
         {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+            View mView = getLayoutInflater().inflate(R.layout.dialos_select_user,null);
+
+            mBuilder.setView(mView);
+
+            caregiverList = mView.findViewById(R.id.careGiverList);
+
+
 
         }
     }
