@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class AddCaregiverFragment extends Fragment {
 
-
+    private ListView listCaregiver;
     public AddCaregiverFragment() {
         // Required empty public constructor
     }
@@ -33,9 +33,23 @@ public class AddCaregiverFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        TextView textView = new TextView(getActivity());
+        final View rootView = inflater.inflate(R.layout.fragment_add_caregiver, container, false);
 
-        return textView;
+        listCaregiver = rootView.findViewById(R.id.list_caregiver);
+
+        String listItemArray[] = {"Caregiver 1", "Caregiver 2", "Caregiver 3",
+                "Caregiver 4", "Caregiver 5", "Caregiver 6", "Caregiver 7"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listItemArray);
+
+        listCaregiver.setAdapter(adapter);
+
+
+        // Inflate the layout for this fragment
+        return rootView;
+
+
     }
+
 
 }
