@@ -1,5 +1,6 @@
 package com.example.shanindu.hearts.activity;
 
+import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
@@ -20,6 +21,7 @@ import com.example.shanindu.hearts.R;
 import com.example.shanindu.hearts.model.user;
 import com.example.shanindu.hearts.support.DBConnection;
 import com.example.shanindu.hearts.support.InternetObserver;
+import com.example.shanindu.hearts.support.sharedPref;
 
 
 import org.json.JSONArray;
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private String user,pword;
     private boolean internetAvailability;
     private ProgressDialog pDialog;
+    sharedPref pref = new sharedPref(getApplicationContext());
 
     user userInstance = new user();
 
@@ -90,11 +93,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 else if (validateUserame() && validatePassword())
                 {
-                    pDialog.setMessage("Logging in ...");
-                    showDialog();
+
                     if(checkLogin(user,pword))
                     {
-                                hideDialog();
+                        if(Remeber.isChecked())
+                        {
+                            pref.setLogin(true);
+
+                        }
 
                         Toast.makeText(getApplicationContext(), "user logged in", Toast.LENGTH_LONG).show();
                                 int userType = userInstance.getUserType();

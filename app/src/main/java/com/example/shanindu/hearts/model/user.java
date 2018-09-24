@@ -35,6 +35,7 @@ public class user {
                 {
                   status =true;
                   getUserDetails();
+                  updateLogin();
 
                   conn.close();
                 }
@@ -147,6 +148,26 @@ public class user {
                 setUserType(rs.getInt("type"));
                 setContact(rs.getString("contact"));
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updateLogin()
+    {
+        try {
+            DBConnection con = new DBConnection();
+            Connection conn= con.getConnection();
+            if (conn!=null)
+            {
+                String query= "UPDATE `users`set `updated_at` ='"+ currentDateTime() +"' WHERE user_id = '"+ getUserId()+"'";
+                PreparedStatement prest = conn.prepareStatement(query);
+                prest.execute();
+                conn.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
