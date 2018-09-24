@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     sharedPref pref = new sharedPref(getApplicationContext());
 
+
     user userInstance = new user();
 
 
@@ -104,15 +105,21 @@ public class LoginActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "user logged in", Toast.LENGTH_LONG).show();
                                 int userType = userInstance.getUserType();
-                                if(userType==1)
+                                if(userType==elder)
                                 {
+
+                                    pref.setUserType(elder);
                                     // Launch ConfigActivity
+
                                     Intent intent = new Intent(LoginActivity.this, ConfigActivity.class);
                                     startActivity(intent);
                                     finish();
+
+
                                 }
-                                if(userType==2)
+                                if(userType==careGiver)
                                 {
+                                    pref.setUserType(careGiver);
                                     // Launch Home Activity
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
